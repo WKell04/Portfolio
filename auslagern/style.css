@@ -1,0 +1,10 @@
+.bg-surface-container-lowest {
+  opacity: 0;
+  transform: translateY(40px) rotateX(10deg);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.bg-surface-container-lowest.sichtbar {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+}

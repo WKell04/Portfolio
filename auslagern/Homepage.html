@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio - Resume</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f0f4ff",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-background": "#2d3035",
+                    "secondary": "#1a80d4",
+                    "on-tertiary-container": "#c8cacc",
+                    "tertiary-container": "#6b6e70",
+                    "on-secondary-fixed": "#003060",
+                    "on-primary-container": "#c2d8ff",
+                    "surface-variant": "#dde6f8",
+                    "inverse-primary": "#c2d8ff",
+                    "outline-variant": "#d0d8e8",
+                    "outline": "#8a9ab8",
+                    "surface-container-high": "#dde6f8",
+                    "inverse-surface": "#3a3f50",
+                    "surface": "#f0f4ff",
+                    "primary": "#2e6bc9",
+                    "on-surface": "#2d3035",
+                    "surface-bright": "#f7f9ff",
+                    "on-tertiary-fixed": "#252729",
+                    "primary-fixed-dim": "#c2d8ff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#eaecee",
+                    "surface-dim": "#c8d2e8",
+                    "secondary-container": "#9ecbff",
+                    "surface-container-highest": "#dde6f8",
+                    "inverse-on-surface": "#eef2ff",
+                    "tertiary": "#4a4e52",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#e4eaf8",
+                    "surface-tint": "#5b80c0",
+                    "on-tertiary-fixed-variant": "#5c6068",
+                    "on-secondary-container": "#003d70",
+                    "on-secondary-fixed-variant": "#00548f",
+                    "on-primary-fixed": "#00205a",
+                    "surface-container-low": "#eaf0ff",
+                    "secondary-fixed-dim": "#c2d8ff",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#e4eeff",
+                    "tertiary-fixed-dim": "#d4d7da",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#cfe0ff",
+                    "on-primary-fixed-variant": "#3a5fa0",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#5c6370",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#e4f0ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "xl": "80px",
+                    "sm": "12px",
+                    "md": "24px",
+                    "lg": "48px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-mobile": ["Manrope"],
+                    "display": ["Manrope"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .soft-elevation {
+            box-shadow: 0px 12px 32px rgba(44, 74, 124, 0.08);
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 4px 12px rgba(44, 74, 124, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container" data-mode="connect">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 z-50 backdrop-blur-md shadow-sm" style="background-color: #4a90d9;">
+
+<nav class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-20">
+<div class="font-headline-md text-headline-md font-bold text-white">Portfolio</div>
+<!-- Desktop Navigation -->
+<div class="hidden md:flex items-center gap-lg">
+<a class="border-b-2 pb-1 font-bold transition-all duration-300 ease-in-out text-white border-white" href="#">Resume</a>
+<a class="hover:scale-105 transition-all duration-300 ease-in-out text-white/80 hover:text-white" href="Skills.html">Skills</a>
+<a class="hover:scale-105 transition-all duration-300 ease-in-out text-white/80 hover:text-white" href="#">Projects</a>
+<a class="hover:scale-105 transition-all duration-300 ease-in-out text-white/80 hover:text-white" href="#">Employers</a>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md hover:scale-105 transition-all duration-300">
+                Kontakt
+            </button>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Hero / Personal Info Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-lg items-center mb-xl">
+<div class="md:col-span-7">
+<span class="inline-block px-md py-xs bg-secondary-container text-on-secondary-container rounded-full font-label-md mb-md">Verfügbar für neue Herausforderungen</span>
+<h1 class="font-display text-display-mobile md:text-display mb-md text-primary">Wilhelm Kell</h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant mb-lg max-w-xl">
+                    Senior Product Designer &amp; Systems Architect, der digitale Erlebnisse mit taktischer Präzision und menschenzentrierter Empathie gestaltet.
+                </p>
+<div class="flex flex-wrap gap-md">
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+<span class="font-body-md">Wolfsburg und Bielefeld, Deutschland</span>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary">mail</span>
+<span class="font-body-md">wjdkell@outlook.de</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-5">
+<div class="relative w-full aspect-square rounded-3xl overflow-hidden soft-elevation">
+<img alt="Alex Sterling Porträt" class="w-full h-full object-cover" data-alt="A professional and approachable portrait of a designer in a bright, modern studio setting. The subject is a male with a friendly expression, wearing a clean navy blue sweater. The background is a soft-focus minimalist office with light wood textures and indoor plants, illuminated by warm, natural sunlight coming from a large window. The overall aesthetic is clean, professional, and consistent with a high-end personal brand." src="images/PB.png"/>"
+</div>
+</section>
+<!-- Resume Content: Asymmetric Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Education & Summary Sidebar -->
+<div class="lg:col-span-1 space-y-lg">
+<!-- Profile Summary -->
+<div class="bg-surface-container-lowest p-lg rounded-3xl soft-elevation border border-surface-container">
+<h3 class="font-headline-md text-headline-md text-primary mb-md">Zusammenfassung</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                        Über 8 Jahre Erfahrung im Aufbau skalierbarer Design-Systeme und High-Fidelity-Prototypen. Nachgewiesene Erfolgsbilanz bei der Leitung funktionsübergreifender Teams zur Bereitstellung preisgekrönter mobiler und Web-Anwendungen.
+                    </p>
+</div>
+<!-- Education -->
+<div class="bg-surface-container-lowest p-lg rounded-3xl soft-elevation border border-surface-container">
+<h3 class="font-headline-md text-headline-md text-primary mb-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary">school</span>
+                        Ausbildung
+                    </h3>
+<div class="space-y-md">
+<div>
+<p class="font-label-md text-secondary">2012 - 2016</p>
+<h4 class="font-body-lg font-bold text-on-surface">BFA in Interaction Design</h4>
+<p class="font-caption text-on-surface-variant">Rhode Island School of Design (RISD)</p>
+</div>
+<div class="pt-md border-t border-surface-container">
+<p class="font-label-md text-secondary">2017</p>
+<h4 class="font-body-lg font-bold text-on-surface">Mensch-Computer-Interaktion</h4>
+<p class="font-caption text-on-surface-variant">Stanford Center for Professional Development</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Experience Timeline -->
+<div class="lg:col-span-2">
+<div class="bg-surface-container-lowest p-lg md:p-xl rounded-3xl soft-elevation border border-surface-container">
+<h3 class="font-headline-md text-headline-md text-primary mb-xl flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary">work</span>
+                        Berufserfahrung
+                    </h3>
+<div class="space-y-xl relative before:content-[''] before:absolute before:left-4 before:top-4 before:bottom-0 before:w-[2px] before:bg-surface-container">
+<!-- Experience Item 1 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-2 w-8 h-8 rounded-full bg-primary-container flex items-center justify-center z-10 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-on-primary-container scale-75" style="font-variation-settings: 'FILL' 1;">circle</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between md:items-start mb-sm">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Lead Product Designer</h4>
+<p class="font-body-lg text-secondary font-medium">DesignFlow Systems</p>
+</div>
+<span class="bg-surface-container px-md py-xs rounded-full font-label-md text-on-surface-variant mt-sm md:mt-0">Heute — 2021</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-md leading-relaxed">
+                                Leitung des kompletten Redesigns des zentralen Enterprise-Dashboards, was zu einer Steigerung der Benutzerproduktivität um 35 % führte. Mentor für ein team von 4 Junior-Designern und Aufbau des ersten umfassenden Design-Systems des Unternehmens, "FlowCore".
+                            </p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Design-Systeme</span>
+<span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Strategie</span>
+<span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Teamleitung</span>
+</div>
+</div>
+<!-- Experience Item 2 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-2 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center z-10 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-outline-variant scale-75" style="font-variation-settings: 'FILL' 1;">circle</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between md:items-start mb-sm">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Senior UX Designer</h4>
+<p class="font-body-lg text-secondary font-medium">Stellar Fintech</p>
+</div>
+<span class="bg-surface-container px-md py-xs rounded-full font-label-md text-on-surface-variant mt-sm md:mt-0">2021 — 2018</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-md leading-relaxed">
+                                Leitung der UX-Forschung und des Prototypings für die Stellar Mobile App, die während meiner Tätigkeit über 2 Mrd. USD an Transaktionen abwickelte. Entwicklung von High-Fidelity-Interaktionsprototypen, die die Abnahmezyklen der Stakeholder um 50 % beschleunigten.
+                            </p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Fintech</span>
+<span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">UX-Forschung</span>
+<span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Prototyping</span>
+</div>
+</div>
+<!-- Experience Item 3 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-2 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center z-10 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-outline-variant scale-75" style="font-variation-settings: 'FILL' 1;">circle</span>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between md:items-start mb-sm">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Interactive Designer</h4>
+<p class="font-body-lg text-secondary font-medium">Creative Orbit Agency</p>
+</div>
+<span class="bg-surface-container px-md py-xs rounded-full font-label-md text-on-surface-variant mt-sm md:mt-0">2018 — 2016</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-md leading-relaxed">
+                                Erstellung immersiver digitaler Kampagnen für Fortune-500-Kunden. Spezialisiert auf Motion Design und responsive Web-Architekturen, die die Grenzen standardmäßiger Browser-Interaktionen erweiterten.
+                            </p>
+<div class="flex flex-wrap gap-xs">
+<span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Motion Design</span>
+<span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Web-Technologien</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Download CTA -->
+<section class="mt-xl text-center">
+<div class="bg-primary-container p-xl rounded-3xl flex flex-col items-center">
+<h2 class="font-display text-display-mobile text-on-primary mb-md">Interesse an der ganzen Geschichte?</h2>
+<p class="font-body-lg text-on-primary-container mb-lg max-w-lg">
+                    Lade den vollständigen PDF-Lebenslauf herunter, um eine detaillierte Aufschlüsselung der Projekte, Referenzen und des technischen Stacks zu erhalten.
+                </p>
+<button class="bg-on-primary text-primary px-xl py-md rounded-full font-label-md flex items-center gap-sm hover:scale-105 transition-all soft-elevation">
+<span class="material-symbols-outlined">download</span>
+                    PDF-Lebenslauf herunterladen
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg mt-xl bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="font-headline-md text-headline-md text-primary font-bold">Portfolio</div>
+<div class="flex gap-lg">
+<a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all opacity-90 hover:opacity-100" href="#">LinkedIn</a>
+<a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all opacity-90 hover:opacity-100" href="#">GitHub</a>
+<a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all opacity-90 hover:opacity-100" href="#">Email</a>
+<a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all opacity-90 hover:opacity-100" href="#">Twitter</a>
+</div>
+<p class="font-caption text-on-surface-variant opacity-90">© 2024 Portfolio. Alle Rechte vorbehalten.</p>
+</div>
+</footer>
+<script>
+        // Simple scroll behavior for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+    <script>
+        const bloecke = document.querySelectorAll('.bg-surface-container-lowest');
+
+        const beobachter = new IntersectionObserver((eintraege) => {
+            eintraege.forEach((eintrag, index) => {
+                if (eintrag.isIntersecting) {
+                    setTimeout(() => {
+                        eintrag.target.classList.add('sichtbar');
+                    }, index * 150);
+                }
+            });
+        });
+
+        bloecke.forEach(block => beobachter.observe(block));
+    </script>
+</body></html>

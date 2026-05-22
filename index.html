@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio - Wilhelm Kell</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "background": "#fcf9f5","on-primary": "#ffffff","error": "#ba1a1a","on-background": "#1b1c1a","secondary": "#0061a5","on-tertiary-container": "#b9bbbc","tertiary-container": "#484b4c","on-secondary-fixed": "#001c37","on-primary-container": "#9ebbf4","surface-variant": "#e5e2df","inverse-primary": "#abc7ff","outline-variant": "#c4c6d0","outline": "#747780","surface-container-high": "#eae8e4","inverse-surface": "#30302e","surface": "#fcf9f5","primary": "#113364","on-surface": "#1b1c1a","surface-bright": "#fcf9f5","on-tertiary-fixed": "#191c1d","primary-fixed-dim": "#abc7ff","on-error-container": "#93000a","tertiary-fixed": "#e1e3e4","surface-dim": "#dcdad6","secondary-container": "#6fb2fd","surface-container-highest": "#e5e2df","inverse-on-surface": "#f3f0ed","tertiary": "#323435","surface-container-lowest": "#ffffff","surface-container": "#f0edea","surface-tint": "#415e92","on-tertiary-fixed-variant": "#454748","on-secondary-container": "#004375","on-secondary-fixed-variant": "#00497e","on-primary-fixed": "#001b3f","surface-container-low": "#f6f3f0","secondary-fixed-dim": "#a0caff","on-error": "#ffffff","primary-fixed": "#d7e2ff","tertiary-fixed-dim": "#c5c7c8","on-tertiary": "#ffffff","primary-container": "#2c4a7c","on-primary-fixed-variant": "#284678","on-secondary": "#ffffff","on-surface-variant": "#43474f","error-container": "#ffdad6","secondary-fixed": "#d2e4ff","on-tertiary-fixed-variant": "#454748"
+      },
+      "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","2xl": "1rem","3xl": "1.5rem","full": "9999px"},
+      "spacing": {"base": "8px","margin-desktop": "64px","margin-mobile": "20px","gutter": "24px","xl": "80px","sm": "12px","md": "24px","lg": "48px","xs": "4px"},
+      "fontFamily": {"headline-md": ["Manrope"],"body-lg": ["Inter"],"label-md": ["Manrope"],"display-mobile": ["Manrope"],"headline-lg-mobile": ["Manrope"],"headline-lg": ["Manrope"],"display": ["Manrope"],"body-md": ["Inter"],"caption": ["Inter"]},
+      "fontSize": {"headline-md": ["24px", {"lineHeight": "1.4","fontWeight": "600"}],"body-lg": ["18px", {"lineHeight": "1.6","fontWeight": "400"}],"label-md": ["14px", {"lineHeight": "1.0","letterSpacing": "0.05em","fontWeight": "600"}],"display-mobile": ["36px", {"lineHeight": "1.2","fontWeight": "700"}],"headline-lg-mobile": ["28px", {"lineHeight": "1.3","fontWeight": "600"}],"headline-lg": ["32px", {"lineHeight": "1.3","fontWeight": "600"}],"display": ["48px", {"lineHeight": "1.2","letterSpacing": "-0.02em","fontWeight": "700"}],"body-md": ["16px", {"lineHeight": "1.6","fontWeight": "400"}],"caption": ["12px", {"lineHeight": "1.4","fontWeight": "400"}]}
+    }
+  }
+}
+</script>
+<style>
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.soft-elevation { box-shadow: 0px 12px 32px rgba(44, 74, 124, 0.08); }
+.skill-tag { transition: transform 0.2s ease; }
+.skill-tag:hover { transform: translateY(-2px); }
+
+/* Seiteninhalt Übergang */
+#seiteninhalt {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+#seiteninhalt.ausblenden {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Block Animation */
+.bg-surface-container-lowest {
+  opacity: 0;
+  transform: translateY(30px) rotateX(6deg);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.bg-surface-container-lowest.sichtbar {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+}
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- Navigation bleibt immer stehen -->
+<header class="w-full sticky top-0 z-50 backdrop-blur-md shadow-sm" style="background-color: #2c4a7c;">
+  <nav class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-20">
+    <div class="font-headline-md text-headline-md font-bold text-white">Portfolio</div>
+    <div class="hidden md:flex items-center gap-lg">
+      <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105" href="#" data-seite="resume">Resume</a>
+      <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105" href="#" data-seite="skills">Skills</a>
+      <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105" href="#" data-seite="projects">Projects</a>
+      <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105" href="#" data-seite="employers">Employers</a>
+    </div>
+    <a href="mailto:wjdkell@outlook.de?subject=Kontaktanfrage%20%E2%80%93%20Portfolio&body=Hallo%20Wilhelm%2C%0A%0Aich%20habe%20dein%20Portfolio%20gesehen%20und%20w%C3%BCrde%20mich%20gerne%20mit%20dir%20in%20Verbindung%20setzen.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A" class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md hover:scale-105 transition-all duration-300">Kontakt</a>
+  </nav>
+</header>
+
+<!-- Hier wechselt nur der Inhalt -->
+<div id="seiteninhalt"></div>
+
+<!-- Footer bleibt immer stehen -->
+<footer class="w-full py-lg mt-xl bg-surface-container-low">
+  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md">
+    <div class="font-headline-md text-headline-md text-primary font-bold">Portfolio</div>
+    <div class="flex gap-lg">
+      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="#">LinkedIn</a>
+      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="#">GitHub</a>
+      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="#">Email</a>
+      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="#">Twitter</a>
+    </div>
+    <p class="font-caption text-on-surface-variant">© 2026 Portfolio. Alle Rechte vorbehalten.</p>
+  </div>
+</footer>
+
+<script>
+const seiten = {
+  resume: `
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+      <section class="grid grid-cols-1 md:grid-cols-12 gap-lg items-center mb-xl">
+        <div class="md:col-span-7">
+          <span class="inline-block px-md py-xs bg-secondary-container text-on-secondary-container rounded-full font-label-md mb-md">Verfügbar für neue Herausforderungen</span>
+          <h1 class="font-display text-display-mobile md:text-display mb-md text-primary">Wilhelm Kell</h1>
+          <p class="font-headline-md text-headline-md text-on-surface-variant mb-lg max-w-xl">Senior Product Designer &amp; Systems Architect, der digitale Erlebnisse mit taktischer Präzision und menschenzentrierter Empathie gestaltet.</p>
+          <div class="flex flex-wrap gap-md">
+            <div class="flex items-center gap-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-secondary">location_on</span>
+              <span class="font-body-md">Wolfsburg und Bielefeld, Deutschland</span>
+            </div>
+            <div class="flex items-center gap-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-secondary">mail</span>
+              <span class="font-body-md">wjdkell@outlook.de</span>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-5">
+          <div class="relative w-full aspect-square rounded-3xl overflow-hidden soft-elevation">
+            <img alt="Wilhelm Kell Porträt" class="w-full h-full object-cover" src="images/PB.png"/>
+          </div>
+        </div>
+      </section>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+        <div class="lg:col-span-1 space-y-lg">
+          <div class="bg-surface-container-lowest p-lg rounded-3xl soft-elevation border border-surface-container">
+            <h3 class="font-headline-md text-headline-md text-primary mb-md">Zusammenfassung</h3>
+            <p class="font-body-md text-on-surface-variant leading-relaxed">Über 8 Jahre Erfahrung im Aufbau skalierbarer Design-Systeme und High-Fidelity-Prototypen. Nachgewiesene Erfolgsbilanz bei der Leitung funktionsübergreifender Teams zur Bereitstellung preisgekrönter mobiler und Web-Anwendungen.</p>
+          </div>
+          <div class="bg-surface-container-lowest p-lg rounded-3xl soft-elevation border border-surface-container">
+            <h3 class="font-headline-md text-headline-md text-primary mb-lg flex items-center gap-xs">
+              <span class="material-symbols-outlined text-secondary">school</span>Ausbildung
+            </h3>
+            <div class="space-y-md">
+              <div>
+                <p class="font-label-md text-secondary">2012 - 2016</p>
+                <h4 class="font-body-lg font-bold text-on-surface">BFA in Interaction Design</h4>
+                <p class="font-caption text-on-surface-variant">Rhode Island School of Design (RISD)</p>
+              </div>
+              <div class="pt-md border-t border-surface-container">
+                <p class="font-label-md text-secondary">2017</p>
+                <h4 class="font-body-lg font-bold text-on-surface">Mensch-Computer-Interaktion</h4>
+                <p class="font-caption text-on-surface-variant">Stanford Center for Professional Development</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <div class="bg-surface-container-lowest p-lg md:p-xl rounded-3xl soft-elevation border border-surface-container">
+            <h3 class="font-headline-md text-headline-md text-primary mb-xl flex items-center gap-xs">
+              <span class="material-symbols-outlined text-secondary">work</span>Berufserfahrung
+            </h3>
+            <div class="space-y-xl relative before:content-[''] before:absolute before:left-4 before:top-4 before:bottom-0 before:w-[2px] before:bg-surface-container">
+              <div class="relative pl-12">
+                <div class="absolute left-0 top-2 w-8 h-8 rounded-full bg-primary-container flex items-center justify-center z-10 border-4 border-surface-container-lowest">
+                  <span class="material-symbols-outlined text-on-primary-container scale-75" style="font-variation-settings:'FILL' 1;">circle</span>
+                </div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-sm">
+                  <div><h4 class="font-headline-md text-headline-md text-on-surface">Lead Product Designer</h4><p class="font-body-lg text-secondary font-medium">DesignFlow Systems</p></div>
+                  <span class="bg-surface-container px-md py-xs rounded-full font-label-md text-on-surface-variant mt-sm md:mt-0">Heute — 2021</span>
+                </div>
+                <p class="font-body-md text-on-surface-variant mb-md leading-relaxed">Leitung des kompletten Redesigns des zentralen Enterprise-Dashboards, was zu einer Steigerung der Benutzerproduktivität um 35 % führte.</p>
+                <div class="flex flex-wrap gap-xs">
+                  <span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Design-Systeme</span>
+                  <span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Strategie</span>
+                  <span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Teamleitung</span>
+                </div>
+              </div>
+              <div class="relative pl-12">
+                <div class="absolute left-0 top-2 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center z-10 border-4 border-surface-container-lowest">
+                  <span class="material-symbols-outlined text-outline-variant scale-75" style="font-variation-settings:'FILL' 1;">circle</span>
+                </div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-sm">
+                  <div><h4 class="font-headline-md text-headline-md text-on-surface">Senior UX Designer</h4><p class="font-body-lg text-secondary font-medium">Stellar Fintech</p></div>
+                  <span class="bg-surface-container px-md py-xs rounded-full font-label-md text-on-surface-variant mt-sm md:mt-0">2021 — 2018</span>
+                </div>
+                <p class="font-body-md text-on-surface-variant mb-md leading-relaxed">Leitung der UX-Forschung und des Prototypings für die Stellar Mobile App, die während meiner Tätigkeit über 2 Mrd. USD an Transaktionen abwickelte.</p>
+                <div class="flex flex-wrap gap-xs">
+                  <span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Fintech</span>
+                  <span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">UX-Forschung</span>
+                </div>
+              </div>
+              <div class="relative pl-12">
+                <div class="absolute left-0 top-2 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center z-10 border-4 border-surface-container-lowest">
+                  <span class="material-symbols-outlined text-outline-variant scale-75" style="font-variation-settings:'FILL' 1;">circle</span>
+                </div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-sm">
+                  <div><h4 class="font-headline-md text-headline-md text-on-surface">Interactive Designer</h4><p class="font-body-lg text-secondary font-medium">Creative Orbit Agency</p></div>
+                  <span class="bg-surface-container px-md py-xs rounded-full font-label-md text-on-surface-variant mt-sm md:mt-0">2018 — 2016</span>
+                </div>
+                <p class="font-body-md text-on-surface-variant mb-md leading-relaxed">Erstellung immersiver digitaler Kampagnen für Fortune-500-Kunden. Spezialisiert auf Motion Design und responsive Web-Architekturen.</p>
+                <div class="flex flex-wrap gap-xs">
+                  <span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Motion Design</span>
+                  <span class="px-md py-xs bg-surface-container-low text-primary rounded-full font-caption border border-surface-variant">Web-Technologien</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="mt-xl text-center">
+        <div class="bg-primary-container p-xl rounded-3xl flex flex-col items-center">
+          <h2 class="font-display text-display-mobile text-on-primary mb-md">Interesse an der ganzen Geschichte?</h2>
+          <p class="font-body-lg text-on-primary-container mb-lg max-w-lg">Lade den vollständigen PDF-Lebenslauf herunter.</p>
+          <button class="bg-on-primary text-primary px-xl py-md rounded-full font-label-md flex items-center gap-sm hover:scale-105 transition-all soft-elevation">
+            <span class="material-symbols-outlined">download</span>PDF-Lebenslauf herunterladen
+          </button>
+        </div>
+      </section>
+    </main>
+  `,
+
+  skills: `
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+      <section class="grid grid-cols-1 md:grid-cols-12 gap-lg items-center mb-xl">
+        <div class="md:col-span-7">
+          <span class="inline-block px-md py-xs bg-secondary-container text-on-secondary-container rounded-full font-label-md mb-md">Expertise &amp; Fähigkeiten</span>
+          <h1 class="font-display text-display-mobile md:text-display mb-md text-primary">Meine Kompetenzen</h1>
+          <p class="font-headline-md text-headline-md text-on-surface-variant mb-lg max-w-xl">Als erfahrener Product Designer kombiniere ich strategisches Denken mit handwerklicher Exzellenz. Mein Fokus liegt auf der Entwicklung skalierbarer Design-Systeme und nutzerzentrierter Lösungen.</p>
+        </div>
+        <div class="md:col-span-5">
+          <div class="relative w-full aspect-square rounded-3xl overflow-hidden soft-elevation">
+            <img alt="Professional Workspace" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfvPjg90ZlxNMnDeLANmNsx-W9AkDQmSJD6u2MtDkTLoXkQTx5cjTV-Xu-7awrGjajM8g7uuMWN_ncBa9LIxdMhNms1xPoQpgJtO49kM4OLvDHkoymS1qQsBAugYc0Zxe00YwLPTw5qsjFgVuqOx6Bzzbj5ByFhOBzzAx3Xcxo_WL49eQs3sPkY67f-z61J-EIHZ0XXfcY8C25U2rLCZe838rn31KspTyLAHcG5cNcbcn1-qTjFn_r3tUs6zeysZtkCskYFiqhnGdy"/>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" style="grid-auto-rows: 1fr;">
+        <!-- Card 1: Software & Tools -->
+        <div class="bg-surface-container-lowest rounded-xl p-md soft-elevation border border-surface-container-high flex flex-col h-full transition-all duration-300">
+          <div class="flex items-center gap-sm mb-md text-secondary">
+            <span class="material-symbols-outlined text-[32px]">architecture</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface">Software &amp; Tools</h3>
+          </div>
+          <div class="space-y-sm">
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Microsoft Office</span>
+              <div class="flex gap-[2px]">
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">star</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Linux</span>
+              <div class="flex gap-[2px]">
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">star</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">star</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Git</span>
+              <div class="flex gap-[2px]">
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">OpenCode</span>
+              <div class="flex gap-[2px]">
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">star</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">star</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">VS Code</span>
+              <div class="flex gap-[2px]">
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Google Stitch</span>
+              <div class="flex gap-[2px]">
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings:'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">star</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">star</span>
+                <span class="material-symbols-outlined text-outline text-[18px]">star</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2: Programmiersprachen -->
+        <div class="bg-surface-container-lowest rounded-xl p-md soft-elevation border border-surface-container-high flex flex-col h-full transition-all duration-300">
+          <div class="flex items-center gap-sm mb-md text-secondary">
+            <span class="material-symbols-outlined text-[32px]">code</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface">Programmiersprachen</h3>
+          </div>
+          <div class="space-y-sm">
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Java</span>
+              <span class="font-label-md text-secondary">Fortgeschritten</span>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">C / C++</span>
+              <span class="font-label-md text-secondary">Fortgeschritten</span>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Python</span>
+              <span class="font-label-md text-secondary">Grundkenntnisse</span>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">SQL</span>
+              <span class="font-label-md text-secondary">Grundkenntnisse</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3: Sprachen -->
+        <div class="bg-surface-container-lowest rounded-xl p-md soft-elevation border border-surface-container-high flex flex-col h-full transition-all duration-300">
+          <div class="flex items-center gap-sm mb-md text-secondary">
+            <span class="material-symbols-outlined text-[32px]">language</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface">Sprachen</h3>
+          </div>
+          <div class="space-y-sm">
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Deutsch</span>
+              <span class="font-label-md text-secondary">Muttersprache</span>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Russisch</span>
+              <span class="font-label-md text-secondary">Muttersprache</span>
+            </div>
+            <div class="flex items-center justify-between p-sm bg-surface-container-low rounded-lg">
+              <span class="font-body-md text-on-surface font-semibold">Englisch</span>
+              <span class="font-label-md text-secondary">B2.3</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4: Methodik -->
+        <div class="bg-surface-container-lowest rounded-xl p-md soft-elevation border border-surface-container-high flex flex-col h-full transition-all duration-300">
+          <div class="flex items-center gap-sm mb-md text-secondary">
+            <span class="material-symbols-outlined text-[32px]">hub</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface">Methodik</h3>
+          </div>
+          <div class="space-y-xs">
+            <div class="flex items-center gap-sm p-sm bg-surface-container-low rounded-lg">
+              <div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-secondary text-[18px]">cycle</span>
+              </div>
+              <span class="font-body-md text-on-surface">Scrum</span>
+            </div>
+            <div class="flex items-center gap-sm p-sm bg-surface-container-low rounded-lg">
+              <div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-secondary text-[18px]">sprint</span>
+              </div>
+              <span class="font-body-md text-on-surface">Agile</span>
+            </div>
+            <div class="flex items-center gap-sm p-sm bg-surface-container-low rounded-lg">
+              <div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-secondary text-[18px]">directions_car</span>
+              </div>
+              <span class="font-body-md text-on-surface">Automotive SPICE <span class="font-caption text-on-surface-variant">(Grundkenntnisse)</span></span>
+            </div>
+            <div class="flex items-center gap-sm p-sm bg-surface-container-low rounded-lg">
+              <div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-secondary text-[18px]">account_tree</span>
+              </div>
+              <span class="font-body-md text-on-surface">UML</span>
+            </div>
+            <div class="flex items-center gap-sm p-sm bg-surface-container-low rounded-lg">
+              <div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-secondary text-[18px]">menu_book</span>
+              </div>
+              <span class="font-body-md text-on-surface">Wissenschaftliches Arbeiten</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 5: Management -->
+        <div class="bg-surface-container-lowest rounded-xl p-md soft-elevation border border-surface-container-high flex flex-col h-full transition-all duration-300">
+          <div class="flex items-center gap-sm mb-md text-secondary">
+            <span class="material-symbols-outlined text-[32px]">assignment</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface">Management</h3>
+          </div>
+          <div class="flex flex-wrap gap-xs">
+            <span class="skill-tag bg-primary-fixed text-on-primary-fixed-variant px-sm py-xs rounded-full font-label-md text-label-md">Project Planning</span>
+            <span class="skill-tag bg-primary-fixed text-on-primary-fixed-variant px-sm py-xs rounded-full font-label-md text-label-md">Product Roadmap</span>
+            <span class="skill-tag bg-primary-fixed text-on-primary-fixed-variant px-sm py-xs rounded-full font-label-md text-label-md">Vendor Management</span>
+            <span class="skill-tag bg-primary-fixed text-on-primary-fixed-variant px-sm py-xs rounded-full font-label-md text-label-md">Budgeting</span>
+          </div>
+        </div>
+        <!-- Card 6: Soft Skills -->
+        <div class="bg-surface-container-lowest rounded-xl p-md soft-elevation border border-surface-container-high flex flex-col h-full transition-all duration-300">
+          <div class="flex items-center gap-sm mb-md text-secondary">
+            <span class="material-symbols-outlined text-[32px]">groups</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface">Soft Skills</h3>
+          </div>
+          <ul class="space-y-sm">
+            <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-secondary text-[20px]">groups</span><span class="font-body-md text-on-surface-variant">Teamfähigkeit</span></li>
+            <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-secondary text-[20px]">task_alt</span><span class="font-body-md text-on-surface-variant">Selbstorganisation</span></li>
+            <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-secondary text-[20px]">school</span><span class="font-body-md text-on-surface-variant">Lernbereitschaft</span></li>
+            <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-secondary text-[20px]">bolt</span><span class="font-body-md text-on-surface-variant">Eigeninitiative</span></li>
+            <li class="flex items-start gap-sm"><span class="material-symbols-outlined text-secondary text-[20px]">fitness_center</span><span class="font-body-md text-on-surface-variant">Belastbarkeit</span></li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  `,
+
+  projects: `
+    <main class="min-h-screen">
+      <!-- Hero / Intro Section -->
+      <section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+        <div class="max-w-2xl">
+          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Meine Projekte</h1>
+          <p class="font-body-lg text-on-surface-variant leading-relaxed">
+            Eine Auswahl meiner jüngsten Arbeiten in den Bereichen Product Design, UX-Strategie und Design-Systeme.
+          </p>
+        </div>
+      </section>
+
+      <!-- Projects Grid Section -->
+      <section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop pb-xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+
+          <!-- Project Card 1: DesignFlow Dashboard -->
+          <div class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow project-card-shadow-hover transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20" style="box-shadow: 0px 12px 32px rgba(44, 74, 124, 0.08);">
+            <div class="aspect-video overflow-hidden">
+              <img alt="DesignFlow Dashboard Preview" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfkFiCiPasmfNK17uoqPtGzA4v3-rbQnxZ9hBv-6QXLs90Vbn4xNa6cCFuFxEMs_RRXHXMZtp5mNgmqSSiy3TLjjdQnoWxmtDRA5fGgg1GYybiPZQrcgkIatOaJS7Vrbbx46aS1lc-QAPy15dQLgcPeKv8D8qzH0uUqSNFwxE1ycpQzVqq2pcj0HWhzEq_1CmWGDCVF78O4vujyCIe7t4l2tDlbUcDicsx1RrpKCmRTSehDY-0myymdP0qKTAbw34V3idYTB1StLme"/>
+            </div>
+            <div class="p-md">
+              <div class="flex flex-wrap gap-xs mb-sm">
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Product Design</span>
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">SaaS</span>
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary mb-sm">DesignFlow Dashboard</h3>
+              <p class="font-body-md text-on-surface-variant mb-md">
+                Eine umfassende Redesign-Lösung für Enterprise-Nutzer zur Steigerung der Produktivität durch optimierte Informationsarchitektur.
+              </p>
+              <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">
+                <span>Projekt ansehen</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  `,
+
+  employers: `
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+      <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Employers</h1>
+      <p class="font-body-lg text-on-surface-variant">Hier kommen deine Arbeitgeber rein.</p>
+    </main>
+  `
+};
+
+let aktuelleSeite = 'resume';
+
+function seiteWechseln(name, ohneHash) {
+  if (name === aktuelleSeite) return;
+  aktuelleSeite = name;
+
+  if (!ohneHash) window.location.hash = name;
+
+  const inhalt = document.getElementById('seiteninhalt');
+
+  // Ausblenden
+  inhalt.classList.add('ausblenden');
+
+  setTimeout(() => {
+    // Inhalt wechseln
+    inhalt.innerHTML = seiten[name] || '';
+    window.scrollTo({ top: 0 });
+
+    // Einblenden
+    inhalt.classList.remove('ausblenden');
+
+    // Aktiven Nav-Link markieren
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const istAktiv = link.dataset.seite === name;
+      link.classList.toggle('border-b-2', istAktiv);
+      link.classList.toggle('pb-1', istAktiv);
+      link.classList.toggle('font-bold', istAktiv);
+      link.classList.toggle('text-white', istAktiv);
+      link.classList.toggle('text-white/80', !istAktiv);
+    });
+
+    // Block-Animationen starten
+    setTimeout(() => {
+      document.querySelectorAll('.bg-surface-container-lowest').forEach((block, i) => {
+        setTimeout(() => block.classList.add('sichtbar'), i * 150);
+      });
+    }, 50);
+
+    // Projektkarten: Klick-Feedback
+    document.querySelectorAll('.group').forEach(card => {
+      card.addEventListener('click', () => {
+        card.style.transform = 'scale(0.98)';
+        setTimeout(() => { card.style.transform = ''; }, 150);
+      });
+    });
+  }, 250);
+}
+
+// Nav-Links verdrahten
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    seiteWechseln(link.dataset.seite);
+  });
+});
+
+// Startseite laden (Hash auslesen oder resume als Standard)
+const startSeite = window.location.hash.replace('#', '') || 'resume';
+const gueltigeSeiten = Object.keys(seiten);
+const seiteZuLaden = gueltigeSeiten.includes(startSeite) ? startSeite : 'resume';
+
+aktuelleSeite = seiteZuLaden;
+if (!window.location.hash) window.location.hash = seiteZuLaden;
+
+inhalt = document.getElementById('seiteninhalt');
+inhalt.innerHTML = seiten[seiteZuLaden];
+document.querySelector('[data-seite="' + seiteZuLaden + '"]').classList.add('border-b-2', 'pb-1', 'font-bold', 'text-white');
+document.querySelector('[data-seite="' + seiteZuLaden + '"]').classList.remove('text-white/80');
+setTimeout(() => {
+  document.querySelectorAll('.bg-surface-container-lowest').forEach((block, i) => {
+    setTimeout(() => block.classList.add('sichtbar'), i * 150);
+  });
+}, 100);
+
+// Scroll-Effekt für Header
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  header.classList.toggle('shadow-md', window.scrollY > 20);
+});
+</script>
+</body>
+</html>
