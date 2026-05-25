@@ -52,36 +52,235 @@ tailwind.config = {
   opacity: 1;
   transform: translateY(0) rotateX(0deg);
 }
+
+/* Desktop Dropdown */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e3a6b;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 0.75rem;
+  min-width: 200px;
+  padding: 14px 6px 6px 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  z-index: 100;
+}
+.nav-dropdown:hover .nav-dropdown-menu {
+  display: block;
+}
+.nav-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 0.5rem;
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+.nav-dropdown-menu a:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+}
+.nav-dropdown-menu a .material-symbols-outlined {
+  font-size: 16px;
+}
+
+/* Mobile Menu */
+#mobile-menu {
+  display: none;
+  background: #1e3a6b;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+#mobile-menu.open {
+  display: block;
+}
+.mobile-nav-item {
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  color: rgba(255,255,255,0.85);
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+.mobile-nav-header:hover { color: #fff; }
+.mobile-sub-menu {
+  display: none;
+  background: rgba(0,0,0,0.15);
+  padding: 4px 0 8px 0;
+}
+.mobile-sub-menu.open { display: block; }
+.mobile-sub-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 36px;
+  color: rgba(255,255,255,0.72);
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.mobile-sub-menu a:hover { color: #fff; }
+.mobile-sub-menu a .material-symbols-outlined { font-size: 16px; }
+.mobile-chevron {
+  font-size: 20px !important;
+  transition: transform 0.2s;
+}
+.mobile-chevron.rotated { transform: rotate(180deg); }
+/* Direct mobile links (no dropdown) */
+.mobile-direct-link {
+  display: block;
+  padding: 14px 20px;
+  color: rgba(255,255,255,0.85);
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.mobile-direct-link:hover { color: #fff; }
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
 
-<!-- Navigation bleibt immer stehen -->
+<!-- Navigation -->
 <header class="w-full sticky top-0 z-50 backdrop-blur-md shadow-sm" style="background-color: #2c4a7c;">
   <nav class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-20">
-    <div class="font-headline-md text-headline-md font-bold text-white">Portfolio</div>
+
+    <!-- Logo -->
+    <div class="font-headline-md text-headline-md font-bold text-white cursor-pointer" onclick="seiteWechseln('resume')">Portfolio</div>
+
+    <!-- Desktop Nav -->
     <div class="hidden md:flex items-center gap-lg">
+
+      <!-- Resume (kein Dropdown) -->
       <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105" href="#" data-seite="resume">Resume</a>
-      <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105" href="#" data-seite="skills">Skills</a>
-      <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105" href="#" data-seite="projects">Projects</a>
+
+      <!-- Skills Dropdown -->
+      <div class="nav-dropdown">
+        <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105 flex items-center gap-xs cursor-pointer" href="#" data-seite="skills">
+          Skills <span class="material-symbols-outlined text-[16px]">expand_more</span>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="#" data-seite="skills" data-anker="">
+            <span class="material-symbols-outlined">psychology</span>Skills
+          </a>
+          <a href="#" data-seite="skills" data-anker="zertifikate">
+            <span class="material-symbols-outlined">workspace_premium</span>Zertifikate
+          </a>
+        </div>
+      </div>
+
+      <!-- Projects Dropdown -->
+      <div class="nav-dropdown">
+        <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105 flex items-center gap-xs cursor-pointer" href="#" data-seite="projects">
+          Projects <span class="material-symbols-outlined text-[16px]">expand_more</span>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="#" data-seite="projects">
+            <span class="material-symbols-outlined">grid_view</span>Alle Projekte
+          </a>
+          <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 4px 0;"></div>
+          <a href="#" data-seite="projects-designflow">Mein PC</a>
+          <a href="#" data-seite="projects-projekt2">Portfolio-Website</a>
+          <a href="#" data-seite="projects-projekt3">FHDW-Campus</a>
+          <a href="#" data-seite="projects-projekt4">n8n</a>
+        </div>
+      </div>
+
+      <!-- Employers (kein Dropdown) -->
       <a class="nav-link transition-all duration-300 ease-in-out text-white/80 hover:text-white hover:scale-105" href="#" data-seite="employers">Employers</a>
     </div>
-    <a href="mailto:wjdkell@outlook.de?subject=Kontaktanfrage%20%E2%80%93%20Portfolio&body=Hallo%20Wilhelm%2C%0A%0Aich%20habe%20dein%20Portfolio%20gesehen%20und%20w%C3%BCrde%20mich%20gerne%20mit%20dir%20in%20Verbindung%20setzen.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A" class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md hover:scale-105 transition-all duration-300">Kontakt</a>
+
+    <!-- Rechte Seite: Kontakt + Hamburger -->
+    <div class="flex items-center gap-md">
+      <a href="mailto:wjdkell@outlook.de?subject=Kontaktanfrage%20%E2%80%93%20Portfolio&body=Hallo%20Wilhelm%2C%0A%0Aich%20habe%20dein%20Portfolio%20gesehen%20und%20w%C3%BCrde%20mich%20gerne%20mit%20dir%20in%20Verbindung%20setzen.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A" class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md hover:scale-105 transition-all duration-300">Kontakt</a>
+      <!-- Hamburger nur Mobile -->
+      <button id="hamburger-btn" class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px]" aria-label="Menü öffnen">
+        <span class="block w-6 h-[2px] bg-white rounded transition-all" id="hb1"></span>
+        <span class="block w-6 h-[2px] bg-white rounded transition-all" id="hb2"></span>
+        <span class="block w-6 h-[2px] bg-white rounded transition-all" id="hb3"></span>
+      </button>
+    </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu">
+    <!-- Resume -->
+    <div class="mobile-nav-item">
+      <span class="mobile-direct-link nav-link" data-seite="resume">Resume</span>
+    </div>
+
+    <!-- Skills Accordion -->
+    <div class="mobile-nav-item">
+      <div class="mobile-nav-header" onclick="toggleMobileAccordion('mobile-skills')">
+        Skills
+        <span class="material-symbols-outlined mobile-chevron" id="chevron-skills">expand_more</span>
+      </div>
+      <div class="mobile-sub-menu" id="mobile-skills">
+        <a href="#" data-seite="skills" data-anker="" class="nav-link">
+          <span class="material-symbols-outlined">psychology</span>Skills
+        </a>
+        <a href="#" data-seite="skills" data-anker="zertifikate" class="nav-link">
+          <span class="material-symbols-outlined">workspace_premium</span>Zertifikate
+        </a>
+      </div>
+    </div>
+
+    <!-- Projects Accordion -->
+    <div class="mobile-nav-item">
+      <div class="mobile-nav-header" onclick="toggleMobileAccordion('mobile-projects')">
+        Projects
+        <span class="material-symbols-outlined mobile-chevron" id="chevron-projects">expand_more</span>
+      </div>
+      <div class="mobile-sub-menu" id="mobile-projects">
+        <a href="#" data-seite="projects" class="nav-link">
+          <span class="material-symbols-outlined">grid_view</span>Alle Projekte
+        </a>
+        <a href="#" data-seite="projects-designflow" class="nav-link">Mein PC</a>
+        <a href="#" data-seite="projects-projekt2" class="nav-link">Portfolio-Website</a>
+        <a href="#" data-seite="projects-projekt3" class="nav-link">FHDW-Campus</a>
+        <a href="#" data-seite="projects-projekt4" class="nav-link">n8n</a>
+      </div>
+    </div>
+
+    <!-- Employers -->
+    <div class="mobile-nav-item">
+      <span class="mobile-direct-link nav-link" data-seite="employers">Employers</span>
+    </div>
+  </div>
 </header>
 
-<!-- Hier wechselt nur der Inhalt -->
+<!-- Seiteninhalt -->
 <div id="seiteninhalt"></div>
 
-<!-- Footer bleibt immer stehen -->
+<!-- Footer -->
 <footer class="w-full py-lg mt-xl bg-surface-container-low">
   <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md">
     <div class="font-headline-md text-headline-md text-primary font-bold">Portfolio</div>
     <div class="flex gap-lg">
       <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="#">LinkedIn</a>
-      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="#">GitHub</a>
-      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="#">Email</a>
-      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="#">Twitter</a>
+      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="https://github.com/WKell04" target="_blank">GitHub</a>
+      <a class="font-caption text-on-surface-variant hover:text-secondary underline transition-all" href="mailto:wjdkell@outlook.de?subject=Kontaktanfrage%20%E2%80%93%20Portfolio&body=Hallo%20Wilhelm%2C%0A%0Aich%20habe%20dein%20Portfolio%20gesehen%20und%20w%C3%BCrde%20mich%20gerne%20mit%20dir%20in%20Verbindung%20setzen.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A">Email</a>
     </div>
     <p class="font-caption text-on-surface-variant">© 2026 Portfolio. Alle Rechte vorbehalten.</p>
   </div>
@@ -216,6 +415,11 @@ const seiten = {
           </div>
         </div>
       </section>
+
+      <div class="flex items-center gap-sm mb-lg">
+        <span class="material-symbols-outlined text-secondary text-[32px]">psychology</span>
+        <h2 class="font-headline-lg text-headline-lg text-primary">Skills</h2>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" style="grid-auto-rows: 1fr;">
         <!-- Card 1: Software & Tools -->
@@ -401,29 +605,53 @@ const seiten = {
           </ul>
         </div>
       </div>
+
+      <!-- Zertifikate Abschnitt -->
+      <section id="zertifikate" class="mt-xl scroll-mt-24">
+        <div class="flex items-center gap-sm mb-lg">
+          <span class="material-symbols-outlined text-secondary text-[32px]">workspace_premium</span>
+          <h2 class="font-headline-lg text-headline-lg text-primary">Zertifikate</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+
+          <!-- Zertifikat: Scrum Master -->
+          <div class="bg-surface-container-lowest rounded-xl soft-elevation border border-surface-container-high overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1">
+            <div class="aspect-video bg-surface-container-low overflow-hidden">
+              <img src="images/Scrum Master Certification.png" alt="Scrum Master Certification" class="w-full h-full object-cover object-top"/>
+            </div>
+            <div class="p-md flex flex-col gap-xs flex-1">
+              <span class="font-label-md text-secondary">Scrum Alliance</span>
+              <h3 class="font-headline-md text-headline-md text-on-surface">Scrum Master Certification</h3>
+              <div class="mt-auto pt-sm">
+                <a href="images/Scrum Master Certification.pdf" target="_blank" class="font-label-md text-secondary flex items-center gap-xs hover:gap-sm transition-all">
+                  Ansehen <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
     </main>
   `,
 
   projects: `
     <main class="min-h-screen">
-      <!-- Hero / Intro Section -->
       <section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
         <div class="max-w-2xl">
           <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Meine Projekte</h1>
           <p class="font-body-lg text-on-surface-variant leading-relaxed">
-            Eine Auswahl meiner jüngsten Arbeiten in den Bereichen Product Design, UX-Strategie und Design-Systeme.
+            Eine Auswahl meiner jüngsten Arbeiten in den Bereichen Product Design, UX-Strategie und Softwareentwicklung.
           </p>
         </div>
       </section>
-
-      <!-- Projects Grid Section -->
       <section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop pb-xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
 
-          <!-- Project Card 1: DesignFlow Dashboard -->
-          <div class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow project-card-shadow-hover transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20" style="box-shadow: 0px 12px 32px rgba(44, 74, 124, 0.08);">
+          <!-- Projekt 1: DesignFlow Dashboard -->
+          <div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-designflow')">
             <div class="aspect-video overflow-hidden">
-              <img alt="DesignFlow Dashboard Preview" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfkFiCiPasmfNK17uoqPtGzA4v3-rbQnxZ9hBv-6QXLs90Vbn4xNa6cCFuFxEMs_RRXHXMZtp5mNgmqSSiy3TLjjdQnoWxmtDRA5fGgg1GYybiPZQrcgkIatOaJS7Vrbbx46aS1lc-QAPy15dQLgcPeKv8D8qzH0uUqSNFwxE1ycpQzVqq2pcj0HWhzEq_1CmWGDCVF78O4vujyCIe7t4l2tDlbUcDicsx1RrpKCmRTSehDY-0myymdP0qKTAbw34V3idYTB1StLme"/>
+              <img alt="DesignFlow Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfkFiCiPasmfNK17uoqPtGzA4v3-rbQnxZ9hBv-6QXLs90Vbn4xNa6cCFuFxEMs_RRXHXMZtp5mNgmqSSiy3TLjjdQnoWxmtDRA5fGgg1GYybiPZQrcgkIatOaJS7Vrbbx46aS1lc-QAPy15dQLgcPeKv8D8qzH0uUqSNFwxE1ycpQzVqq2pcj0HWhzEq_1CmWGDCVF78O4vujyCIe7t4l2tDlbUcDicsx1RrpKCmRTSehDY-0myymdP0qKTAbw34V3idYTB1StLme"/>
             </div>
             <div class="p-md">
               <div class="flex flex-wrap gap-xs mb-sm">
@@ -431,9 +659,45 @@ const seiten = {
                 <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">SaaS</span>
               </div>
               <h3 class="font-headline-md text-headline-md text-primary mb-sm">DesignFlow Dashboard</h3>
-              <p class="font-body-md text-on-surface-variant mb-md">
-                Eine umfassende Redesign-Lösung für Enterprise-Nutzer zur Steigerung der Produktivität durch optimierte Informationsarchitektur.
-              </p>
+              <p class="font-body-md text-on-surface-variant mb-md">Eine umfassende Redesign-Lösung für Enterprise-Nutzer zur Steigerung der Produktivität durch optimierte Informationsarchitektur.</p>
+              <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">
+                <span>Projekt ansehen</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projekt 2 -->
+          <div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-projekt2')">
+            <div class="aspect-video overflow-hidden">
+              <img alt="Projekt Zwei" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="images/placeholder.svg"/>
+            </div>
+            <div class="p-md">
+              <div class="flex flex-wrap gap-xs mb-sm">
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Mobile App</span>
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">UX</span>
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary mb-sm">Projekt Zwei</h3>
+              <p class="font-body-md text-on-surface-variant mb-md">Platzhalter-Beschreibung für das zweite Projekt. Hier kommt eine kurze Zusammenfassung rein.</p>
+              <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">
+                <span>Projekt ansehen</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projekt 3 -->
+          <div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-projekt3')">
+            <div class="aspect-video overflow-hidden">
+              <img alt="Projekt Drei" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="images/placeholder.svg"/>
+            </div>
+            <div class="p-md">
+              <div class="flex flex-wrap gap-xs mb-sm">
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Web</span>
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Frontend</span>
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary mb-sm">Projekt Drei</h3>
+              <p class="font-body-md text-on-surface-variant mb-md">Platzhalter-Beschreibung für das dritte Projekt. Hier kommt eine kurze Zusammenfassung rein.</p>
               <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">
                 <span>Projekt ansehen</span>
                 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
@@ -443,7 +707,186 @@ const seiten = {
 
         </div>
       </section>
+    </main>
+  `,
 
+  'projects-designflow': `
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+      <!-- Zurück -->
+      <button onclick="seiteWechseln('projects')" class="flex items-center gap-xs text-secondary font-label-md mb-lg hover:gap-sm transition-all">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span> Alle Projekte
+      </button>
+      <!-- Hero -->
+      <div class="rounded-3xl overflow-hidden soft-elevation mb-xl aspect-video">
+        <img src="images/placeholder.svg" alt="DesignFlow Dashboard" class="w-full h-full object-cover"/>
+      </div>
+      <!-- Header -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-xl">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-xs mb-md">
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Product Design</span>
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">SaaS</span>
+          </div>
+          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">DesignFlow Dashboard</h1>
+          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung: Eine umfassende Redesign-Lösung für Enterprise-Nutzer. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-2xl p-lg soft-elevation border border-surface-container h-fit">
+          <h3 class="font-headline-md text-headline-md text-primary mb-md">Projektdetails</h3>
+          <div class="space-y-sm">
+            <div>
+              <p class="font-caption text-on-surface-variant">Zeitraum</p>
+              <p class="font-body-md text-on-surface font-semibold">2021 – Heute</p>
+            </div>
+            <div class="border-t border-surface-container pt-sm">
+              <p class="font-caption text-on-surface-variant">Rolle</p>
+              <p class="font-body-md text-on-surface font-semibold">Lead Product Designer</p>
+            </div>
+            <div class="border-t border-surface-container pt-sm">
+              <p class="font-caption text-on-surface-variant">Technologien</p>
+              <div class="flex flex-wrap gap-xs mt-xs">
+                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">Figma</span>
+                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">React</span>
+                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">TypeScript</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Galerie -->
+      <h2 class="font-headline-lg text-headline-lg text-primary mb-lg">Galerie</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-xl">
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
+        </div>
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
+        </div>
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder.svg" alt="Screenshot 3" class="w-full h-full object-cover"/>
+        </div>
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder.svg" alt="Screenshot 4" class="w-full h-full object-cover"/>
+        </div>
+      </div>
+      <!-- Navigation zwischen Projekten -->
+      <div class="flex justify-between items-center border-t border-surface-container pt-lg">
+        <div></div>
+        <button onclick="seiteWechseln('projects-projekt2')" class="flex items-center gap-xs text-secondary font-label-md hover:gap-sm transition-all">
+          Nächstes Projekt <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+        </button>
+      </div>
+    </main>
+  `,
+
+  'projects-projekt2': `
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+      <button onclick="seiteWechseln('projects')" class="flex items-center gap-xs text-secondary font-label-md mb-lg hover:gap-sm transition-all">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span> Alle Projekte
+      </button>
+      <div class="rounded-3xl overflow-hidden soft-elevation mb-xl aspect-video">
+        <img src="images/placeholder.svg" alt="Projekt Zwei" class="w-full h-full object-cover"/>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-xl">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-xs mb-md">
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Mobile App</span>
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">UX</span>
+          </div>
+          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Projekt Zwei</h1>
+          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung für Projekt Zwei. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-2xl p-lg soft-elevation border border-surface-container h-fit">
+          <h3 class="font-headline-md text-headline-md text-primary mb-md">Projektdetails</h3>
+          <div class="space-y-sm">
+            <div>
+              <p class="font-caption text-on-surface-variant">Zeitraum</p>
+              <p class="font-body-md text-on-surface font-semibold">Platzhalter</p>
+            </div>
+            <div class="border-t border-surface-container pt-sm">
+              <p class="font-caption text-on-surface-variant">Rolle</p>
+              <p class="font-body-md text-on-surface font-semibold">Platzhalter</p>
+            </div>
+            <div class="border-t border-surface-container pt-sm">
+              <p class="font-caption text-on-surface-variant">Technologien</p>
+              <div class="flex flex-wrap gap-xs mt-xs">
+                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">Platzhalter</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="font-headline-lg text-headline-lg text-primary mb-lg">Galerie</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-xl">
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
+        </div>
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
+        </div>
+      </div>
+      <div class="flex justify-between items-center border-t border-surface-container pt-lg">
+        <button onclick="seiteWechseln('projects-designflow')" class="flex items-center gap-xs text-secondary font-label-md hover:gap-sm transition-all">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span> Vorheriges Projekt
+        </button>
+        <button onclick="seiteWechseln('projects-projekt3')" class="flex items-center gap-xs text-secondary font-label-md hover:gap-sm transition-all">
+          Nächstes Projekt <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+        </button>
+      </div>
+    </main>
+  `,
+
+  'projects-projekt3': `
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+      <button onclick="seiteWechseln('projects')" class="flex items-center gap-xs text-secondary font-label-md mb-lg hover:gap-sm transition-all">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span> Alle Projekte
+      </button>
+      <div class="rounded-3xl overflow-hidden soft-elevation mb-xl aspect-video">
+        <img src="images/placeholder.svg" alt="Projekt Drei" class="w-full h-full object-cover"/>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-xl">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-xs mb-md">
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Web</span>
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Frontend</span>
+          </div>
+          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Projekt Drei</h1>
+          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung für Projekt Drei. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-2xl p-lg soft-elevation border border-surface-container h-fit">
+          <h3 class="font-headline-md text-headline-md text-primary mb-md">Projektdetails</h3>
+          <div class="space-y-sm">
+            <div>
+              <p class="font-caption text-on-surface-variant">Zeitraum</p>
+              <p class="font-body-md text-on-surface font-semibold">Platzhalter</p>
+            </div>
+            <div class="border-t border-surface-container pt-sm">
+              <p class="font-caption text-on-surface-variant">Rolle</p>
+              <p class="font-body-md text-on-surface font-semibold">Platzhalter</p>
+            </div>
+            <div class="border-t border-surface-container pt-sm">
+              <p class="font-caption text-on-surface-variant">Technologien</p>
+              <div class="flex flex-wrap gap-xs mt-xs">
+                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">Platzhalter</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="font-headline-lg text-headline-lg text-primary mb-lg">Galerie</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-xl">
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
+        </div>
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
+        </div>
+      </div>
+      <div class="flex justify-between items-center border-t border-surface-container pt-lg">
+        <button onclick="seiteWechseln('projects-projekt2')" class="flex items-center gap-xs text-secondary font-label-md hover:gap-sm transition-all">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span> Vorheriges Projekt
+        </button>
+        <div></div>
+      </div>
     </main>
   `,
 
@@ -456,29 +899,87 @@ const seiten = {
 };
 
 let aktuelleSeite = 'resume';
+let ankerNachLaden = null;
 
-function seiteWechseln(name, ohneHash) {
-  if (name === aktuelleSeite) return;
-  aktuelleSeite = name;
+// ─── Hamburger ────────────────────────────────────────────────────
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const hb1 = document.getElementById('hb1');
+const hb2 = document.getElementById('hb2');
+const hb3 = document.getElementById('hb3');
+let menuOffen = false;
 
-  if (!ohneHash) window.location.hash = name;
+hamburgerBtn.addEventListener('click', () => {
+  menuOffen = !menuOffen;
+  mobileMenu.classList.toggle('open', menuOffen);
+  // Hamburger → X Animation
+  hb1.style.transform = menuOffen ? 'translateY(7px) rotate(45deg)' : '';
+  hb2.style.opacity   = menuOffen ? '0' : '1';
+  hb3.style.transform = menuOffen ? 'translateY(-7px) rotate(-45deg)' : '';
+});
+
+function mobileMenuSchliessen() {
+  menuOffen = false;
+  mobileMenu.classList.remove('open');
+  hb1.style.transform = '';
+  hb2.style.opacity = '1';
+  hb3.style.transform = '';
+}
+
+// ─── Mobile Accordion ─────────────────────────────────────────────
+function toggleMobileAccordion(id) {
+  const menu = document.getElementById(id);
+  const key = id.replace('mobile-', '');
+  const chevron = document.getElementById('chevron-' + key);
+  const istOffen = menu.classList.contains('open');
+  // Alle schließen
+  document.querySelectorAll('.mobile-sub-menu').forEach(m => m.classList.remove('open'));
+  document.querySelectorAll('.mobile-chevron').forEach(c => c.classList.remove('rotated'));
+  // Gewähltes toggeln
+  if (!istOffen) {
+    menu.classList.add('open');
+    chevron.classList.add('rotated');
+  }
+}
+
+// ─── Seite wechseln ───────────────────────────────────────────────
+function seiteWechseln(name, anker) {
+  mobileMenuSchliessen();
+
+  const zuNavigieren = name;
+  const istGleicheSeite = zuNavigieren === aktuelleSeite;
+
+  if (anker && istGleicheSeite) {
+    // Nur scrollen, kein Seitenwechsel
+    const el = document.getElementById(anker);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  if (zuNavigieren === aktuelleSeite && !anker) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  aktuelleSeite = zuNavigieren;
+  ankerNachLaden = anker || null;
+
+  window.location.hash = zuNavigieren;
 
   const inhalt = document.getElementById('seiteninhalt');
-
-  // Ausblenden
   inhalt.classList.add('ausblenden');
 
   setTimeout(() => {
-    // Inhalt wechseln
-    inhalt.innerHTML = seiten[name] || '';
-    window.scrollTo({ top: 0 });
+    inhalt.innerHTML = seiten[zuNavigieren] || '';
+    if (!ankerNachLaden) window.scrollTo({ top: 0 });
 
-    // Einblenden
     inhalt.classList.remove('ausblenden');
 
-    // Aktiven Nav-Link markieren
-    document.querySelectorAll('.nav-link').forEach(link => {
-      const istAktiv = link.dataset.seite === name;
+    // Nav-Link aktiv markieren (Hauptseite ermitteln)
+    const hauptSeite = zuNavigieren.split('-')[0] === 'projects' ? 'projects' : zuNavigieren;
+    document.querySelectorAll('.nav-link[data-seite]').forEach(link => {
+      const s = link.dataset.seite;
+      const istAktiv = s === hauptSeite && !link.dataset.anker;
       link.classList.toggle('border-b-2', istAktiv);
       link.classList.toggle('pb-1', istAktiv);
       link.classList.toggle('font-bold', istAktiv);
@@ -486,53 +987,64 @@ function seiteWechseln(name, ohneHash) {
       link.classList.toggle('text-white/80', !istAktiv);
     });
 
-    // Block-Animationen starten
+    // Block-Animationen
     setTimeout(() => {
       document.querySelectorAll('.bg-surface-container-lowest').forEach((block, i) => {
         setTimeout(() => block.classList.add('sichtbar'), i * 150);
       });
+
+      // Anker-Scroll nach Laden
+      if (ankerNachLaden) {
+        const el = document.getElementById(ankerNachLaden);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        ankerNachLaden = null;
+      }
     }, 50);
 
-    // Projektkarten: Klick-Feedback
-    document.querySelectorAll('.group').forEach(card => {
-      card.addEventListener('click', () => {
-        card.style.transform = 'scale(0.98)';
-        setTimeout(() => { card.style.transform = ''; }, 150);
-      });
-    });
   }, 250);
 }
 
-// Nav-Links verdrahten
-document.querySelectorAll('.nav-link').forEach(link => {
+// ─── Nav-Links verdrahten ─────────────────────────────────────────
+document.querySelectorAll('[data-seite]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
-    seiteWechseln(link.dataset.seite);
+    const seite = link.dataset.seite;
+    const anker = link.dataset.anker || null;
+    if (anker !== null && anker !== undefined) {
+      seiteWechseln(seite, anker || null);
+    } else {
+      seiteWechseln(seite);
+    }
   });
 });
 
-// Startseite laden (Hash auslesen oder resume als Standard)
-const startSeite = window.location.hash.replace('#', '') || 'resume';
+// ─── Startseite ───────────────────────────────────────────────────
+const startHash = window.location.hash.replace('#', '') || 'resume';
 const gueltigeSeiten = Object.keys(seiten);
-const seiteZuLaden = gueltigeSeiten.includes(startSeite) ? startSeite : 'resume';
+const seiteZuLaden = gueltigeSeiten.includes(startHash) ? startHash : 'resume';
 
 aktuelleSeite = seiteZuLaden;
 if (!window.location.hash) window.location.hash = seiteZuLaden;
 
-inhalt = document.getElementById('seiteninhalt');
+const inhalt = document.getElementById('seiteninhalt');
 inhalt.innerHTML = seiten[seiteZuLaden];
-document.querySelector('[data-seite="' + seiteZuLaden + '"]').classList.add('border-b-2', 'pb-1', 'font-bold', 'text-white');
-document.querySelector('[data-seite="' + seiteZuLaden + '"]').classList.remove('text-white/80');
+
+const hauptSeiteStart = seiteZuLaden.startsWith('projects-') ? 'projects' : seiteZuLaden;
+const startLink = document.querySelector('[data-seite="' + hauptSeiteStart + '"]:not([data-anker])');
+if (startLink) {
+  startLink.classList.add('border-b-2', 'pb-1', 'font-bold', 'text-white');
+  startLink.classList.remove('text-white/80');
+}
+
 setTimeout(() => {
   document.querySelectorAll('.bg-surface-container-lowest').forEach((block, i) => {
     setTimeout(() => block.classList.add('sichtbar'), i * 150);
   });
 }, 100);
 
-// Scroll-Effekt für Header
+// ─── Scroll-Effekt Header ─────────────────────────────────────────
 window.addEventListener('scroll', () => {
-  const header = document.querySelector('header');
-  header.classList.toggle('shadow-md', window.scrollY > 20);
+  document.querySelector('header').classList.toggle('shadow-md', window.scrollY > 20);
 });
 </script>
 </body>

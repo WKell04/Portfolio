@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <rect width="800" height="450" fill="#e5e2df"/>
+  <rect x="340" y="185" width="120" height="80" rx="8" fill="#c4c6d0"/>
+  <circle cx="370" cy="210" r="15" fill="#747780"/>
+  <polygon points="340,265 400,215 460,265" fill="#747780"/>
+  <text x="400" y="310" font-family="Inter, sans-serif" font-size="16" fill="#747780" text-anchor="middle">Bild Platzhalter</text>
+</svg>
