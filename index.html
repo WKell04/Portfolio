@@ -8,7 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="images/icon/favicon.svg">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"/>
 <script id="tailwind-config">
 tailwind.config = {
   darkMode: "class",
@@ -30,6 +31,18 @@ tailwind.config = {
 .soft-elevation { box-shadow: 0px 12px 32px rgba(44, 74, 124, 0.08); }
 .skill-tag { transition: transform 0.2s ease; }
 .skill-tag:hover { transform: translateY(-2px); }
+
+/* Galerie Block Hover */
+.galerie-block {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  cursor: pointer;
+}
+.galerie-block:hover {
+  transform: translateY(-10px) rotateX(4deg) rotateY(-2deg) scale(1.02);
+  box-shadow: 0px 24px 48px rgba(44, 74, 124, 0.22);
+}
 
 /* Seiteninhalt Übergang */
 #seiteninhalt {
@@ -294,7 +307,7 @@ const seiten = {
         <div class="md:col-span-7">
           <span class="inline-block px-md py-xs bg-secondary-container text-on-secondary-container rounded-full font-label-md mb-md">Verfügbar für neue Herausforderungen</span>
           <h1 class="font-display text-display-mobile md:text-display mb-md text-primary">Wilhelm Kell</h1>
-          <p class="font-headline-md text-headline-md text-on-surface-variant mb-lg max-w-xl">Senior Product Designer &amp; Systems Architect, der digitale Erlebnisse mit taktischer Präzision und menschenzentrierter Empathie gestaltet.</p>
+          <p class="font-headline-md text-headline-md text-on-surface-variant mb-lg max-w-xl">Dualer Student bei der deutschen Telekom, eingesetzt im Unternehmen als Scrum Master und Software Entwickler.</p>
           <div class="flex flex-wrap gap-md">
             <div class="flex items-center gap-xs text-on-surface-variant">
               <span class="material-symbols-outlined text-secondary">location_on</span>
@@ -308,7 +321,7 @@ const seiten = {
         </div>
         <div class="md:col-span-5">
           <div class="relative w-full aspect-square rounded-3xl overflow-hidden soft-elevation">
-            <img alt="Wilhelm Kell Porträt" class="w-full h-full object-cover" src="images/PB.png"/>
+            <img alt="Wilhelm Kell Porträt" class="w-full h-full object-cover" src="images/homepage/PB.png"/>
           </div>
         </div>
       </section>
@@ -407,7 +420,7 @@ const seiten = {
         <div class="md:col-span-7">
           <span class="inline-block px-md py-xs bg-secondary-container text-on-secondary-container rounded-full font-label-md mb-md">Expertise &amp; Fähigkeiten</span>
           <h1 class="font-display text-display-mobile md:text-display mb-md text-primary">Meine Kompetenzen</h1>
-          <p class="font-headline-md text-headline-md text-on-surface-variant mb-lg max-w-xl">Als erfahrener Product Designer kombiniere ich strategisches Denken mit handwerklicher Exzellenz. Mein Fokus liegt auf der Entwicklung skalierbarer Design-Systeme und nutzerzentrierter Lösungen.</p>
+          <p class="font-headline-md text-headline-md text-on-surface-variant mb-lg max-w-xl">Als Dualer Student bei der deutschen Telekom habe ich die möglichkeit meine Skills im IT-Bereich auszubauen und mich mit vielen Themen zu beschäftigen. Zusätzlich habe ich durch mein Studium an der FHDW viele einblicke in verschiedene Themengebiete bekommen.</p>
         </div>
         <div class="md:col-span-5">
           <div class="relative w-full aspect-square rounded-3xl overflow-hidden soft-elevation">
@@ -617,13 +630,13 @@ const seiten = {
           <!-- Zertifikat: Scrum Master -->
           <div class="bg-surface-container-lowest rounded-xl soft-elevation border border-surface-container-high overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1">
             <div class="aspect-video bg-surface-container-low overflow-hidden">
-              <img src="images/Scrum Master Certification.png" alt="Scrum Master Certification" class="w-full h-full object-cover object-top"/>
+              <img src="images/certificate/Scrum Master Certification.png" alt="Scrum Master Certification" class="w-full h-full object-cover object-top"/>
             </div>
             <div class="p-md flex flex-col gap-xs flex-1">
               <span class="font-label-md text-secondary">Scrum Alliance</span>
               <h3 class="font-headline-md text-headline-md text-on-surface">Scrum Master Certification</h3>
               <div class="mt-auto pt-sm">
-                <a href="images/Scrum Master Certification.pdf" target="_blank" class="font-label-md text-secondary flex items-center gap-xs hover:gap-sm transition-all">
+                <a href="images/certificate/Scrum Master Certification.pdf" target="_blank" class="font-label-md text-secondary flex items-center gap-xs hover:gap-sm transition-all">
                   Ansehen <span class="material-symbols-outlined text-[16px]">open_in_new</span>
                 </a>
               </div>
@@ -637,29 +650,68 @@ const seiten = {
 
   projects: `
     <main class="min-h-screen">
-      <section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
-        <div class="max-w-2xl">
-          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Meine Projekte</h1>
-          <p class="font-body-lg text-on-surface-variant leading-relaxed">
-            Eine Auswahl meiner jüngsten Arbeiten in den Bereichen Product Design, UX-Strategie und Softwareentwicklung.
-          </p>
+      <!-- Hero Banner -->
+      <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #0d2347 0%, #113364 40%, #1e4a8a 70%, #2c4a7c 100%); min-height: 280px;">
+        <!-- Schwebende Devicons Hintergrund -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <!-- Oben links (über dem Text) -->
+          <i class="devicon-git-plain colored absolute" style="left:2%;top:5%;font-size:52px;opacity:0.75;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float1 9s ease-in-out infinite;"></i>
+          <i class="devicon-docker-plain colored absolute" style="left:28%;top:4%;font-size:50px;opacity:0.70;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float2 11s ease-in-out infinite 1s;"></i>
+          <!-- Unten links (unter dem Text) -->
+          <i class="devicon-linux-plain colored absolute" style="left:9%;top:55%;font-size:48px;opacity:0.95;filter:drop-shadow(0 0 14px rgba(255,255,255,0.5));animation:float3 12s ease-in-out infinite;"></i>
+          <i class="devicon-windows11-original colored absolute" style="left:22%;top:80%;font-size:46px;opacity:0.70;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float1 10s ease-in-out infinite 2s;"></i>
+          <i class="devicon-jira-plain colored absolute" style="left:40%;top:76%;font-size:42px;opacity:0.65;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float2 11s ease-in-out infinite 3s;"></i>
+          <!-- Rechts -->
+          <i class="devicon-python-plain colored absolute" style="left:57%;top:8%;font-size:64px;opacity:0.75;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float3 10s ease-in-out infinite;"></i>
+          <i class="devicon-vscode-plain colored absolute" style="left:72%;top:12%;font-size:58px;opacity:0.75;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float1 8s ease-in-out infinite 2s;"></i>
+          <i class="devicon-github-original colored absolute" style="left:86%;top:6%;font-size:54px;opacity:0.70;filter:drop-shadow(0 0 8px rgba(255,255,255,0.3));animation:float2 13s ease-in-out infinite 0.5s;"></i>
+          <i class="devicon-java-plain colored absolute" style="left:60%;top:40%;font-size:52px;opacity:0.70;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float3 11s ease-in-out infinite 1s;"></i>
+          <i class="devicon-cplusplus-plain colored absolute" style="left:78%;top:45%;font-size:64px;opacity:0.90;filter:drop-shadow(0 0 12px rgba(255,255,255,0.35));animation:float1 14s ease-in-out infinite 1.5s;"></i>
+          <i class="devicon-ubuntu-plain colored absolute" style="left:60%;top:75%;font-size:44px;opacity:0.65;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float2 12s ease-in-out infinite 2s;"></i>
+          <i class="devicon-confluence-plain colored absolute" style="left:78%;top:72%;font-size:48px;opacity:0.70;filter:drop-shadow(0 0 8px rgba(255,255,255,0.2));animation:float3 10s ease-in-out infinite 1s;"></i>
+        </div>
+        <style>
+          @keyframes float1 {
+            0%,100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-18px) rotate(4deg); }
+            66% { transform: translateY(10px) rotate(-3deg); }
+          }
+          @keyframes float2 {
+            0%,100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-22px) rotate(-5deg); }
+          }
+          @keyframes float3 {
+            0%,100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(14px) rotate(3deg); }
+            75% { transform: translateY(-16px) rotate(-4deg); }
+          }
+        </style>
+        <!-- Inhalt -->
+        <div class="relative max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex items-center" style="min-height:280px;">
+          <div class="max-w-2xl py-xl">
+            <span id="projekt-counter" class="inline-block px-md py-xs rounded-full font-label-md mb-md" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.85);">4 Projekte</span>
+            <h1 class="font-display text-display-mobile md:text-display mb-md" style="color:#fff;">Meine Projekte</h1>
+            <p class="font-body-lg leading-relaxed" style="color:rgba(255,255,255,0.7);">
+              Eine Auswahl meiner Arbeiten in den Bereichen Hardware, Web-Entwicklung und Automatisierung.
+            </p>
+          </div>
         </div>
       </section>
-      <section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop pb-xl">
+      <section class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop pb-xl pt-xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
 
-          <!-- Projekt 1: DesignFlow Dashboard -->
-          <div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-designflow')">
+          <!-- Projekt 1: Mein PC -->
+          <div class="projekt-block group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-designflow')">
             <div class="aspect-video overflow-hidden">
-              <img alt="DesignFlow Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfkFiCiPasmfNK17uoqPtGzA4v3-rbQnxZ9hBv-6QXLs90Vbn4xNa6cCFuFxEMs_RRXHXMZtp5mNgmqSSiy3TLjjdQnoWxmtDRA5fGgg1GYybiPZQrcgkIatOaJS7Vrbbx46aS1lc-QAPy15dQLgcPeKv8D8qzH0uUqSNFwxE1ycpQzVqq2pcj0HWhzEq_1CmWGDCVF78O4vujyCIe7t4l2tDlbUcDicsx1RrpKCmRTSehDY-0myymdP0qKTAbw34V3idYTB1StLme"/>
+              <img alt="Mein PC" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="images/placeholder/placeholder.svg"/>
             </div>
             <div class="p-md">
               <div class="flex flex-wrap gap-xs mb-sm">
-                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Product Design</span>
-                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">SaaS</span>
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Hardware</span>
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Custom Build</span>
               </div>
-              <h3 class="font-headline-md text-headline-md text-primary mb-sm">DesignFlow Dashboard</h3>
-              <p class="font-body-md text-on-surface-variant mb-md">Eine umfassende Redesign-Lösung für Enterprise-Nutzer zur Steigerung der Produktivität durch optimierte Informationsarchitektur.</p>
+              <h3 class="font-headline-md text-headline-md text-primary mb-sm">Mein PC</h3>
+              <p class="font-body-md text-on-surface-variant mb-md">Platzhalter-Beschreibung für Mein PC. Hier kommt eine kurze Zusammenfassung rein.</p>
               <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">
                 <span>Projekt ansehen</span>
                 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
@@ -667,37 +719,55 @@ const seiten = {
             </div>
           </div>
 
-          <!-- Projekt 2 -->
-          <div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-projekt2')">
+          <!-- Projekt 2: Portfolio -->
+          <div class="projekt-block group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-projekt2')">
             <div class="aspect-video overflow-hidden">
-              <img alt="Projekt Zwei" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="images/placeholder.svg"/>
-            </div>
-            <div class="p-md">
-              <div class="flex flex-wrap gap-xs mb-sm">
-                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Mobile App</span>
-                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">UX</span>
-              </div>
-              <h3 class="font-headline-md text-headline-md text-primary mb-sm">Projekt Zwei</h3>
-              <p class="font-body-md text-on-surface-variant mb-md">Platzhalter-Beschreibung für das zweite Projekt. Hier kommt eine kurze Zusammenfassung rein.</p>
-              <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">
-                <span>Projekt ansehen</span>
-                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Projekt 3 -->
-          <div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-projekt3')">
-            <div class="aspect-video overflow-hidden">
-              <img alt="Projekt Drei" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="images/placeholder.svg"/>
+              <img alt="Portfolio" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="images/placeholder/placeholder.svg"/>
             </div>
             <div class="p-md">
               <div class="flex flex-wrap gap-xs mb-sm">
                 <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Web</span>
                 <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Frontend</span>
               </div>
-              <h3 class="font-headline-md text-headline-md text-primary mb-sm">Projekt Drei</h3>
-              <p class="font-body-md text-on-surface-variant mb-md">Platzhalter-Beschreibung für das dritte Projekt. Hier kommt eine kurze Zusammenfassung rein.</p>
+              <h3 class="font-headline-md text-headline-md text-primary mb-sm">Portfolio</h3>
+              <p class="font-body-md text-on-surface-variant mb-md">Platzhalter-Beschreibung für die Portfolio-Website. Hier kommt eine kurze Zusammenfassung rein.</p>
+              <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">
+                <span>Projekt ansehen</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projekt 3: FHDW-Campus -->
+          <div class="projekt-block group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-projekt3')">
+            <div class="aspect-video overflow-hidden">
+              <img alt="FHDW-Campus" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="images/placeholder/placeholder.svg"/>
+            </div>
+            <div class="p-md">
+              <div class="flex flex-wrap gap-xs mb-sm">
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Web</span>
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">App</span>
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary mb-sm">FHDW-Campus</h3>
+              <p class="font-body-md text-on-surface-variant mb-md">Platzhalter-Beschreibung für FHDW-Campus. Hier kommt eine kurze Zusammenfassung rein.</p>
+              <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">Projekt ansehen<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Projekt 4: n8n -->
+          <div class="projekt-block group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-surface-container-high/20 soft-elevation" onclick="seiteWechseln('projects-projekt4')">
+            <div class="aspect-video overflow-hidden">
+              <img alt="n8n" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="images/placeholder/placeholder.svg"/>
+            </div>
+            <div class="p-md">
+              <div class="flex flex-wrap gap-xs mb-sm">
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Automation</span>
+                <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">No-Code</span>
+              </div>
+              <h3 class="font-headline-md text-headline-md text-primary mb-sm">n8n</h3>
+              <p class="font-body-md text-on-surface-variant mb-md">Platzhalter-Beschreibung für das n8n-Projekt. Hier kommt eine kurze Zusammenfassung rein.</p>
               <div class="flex items-center text-secondary font-label-md gap-xs group-hover:gap-sm transition-all">
                 <span>Projekt ansehen</span>
                 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
@@ -716,37 +786,26 @@ const seiten = {
       <button onclick="seiteWechseln('projects')" class="flex items-center gap-xs text-secondary font-label-md mb-lg hover:gap-sm transition-all">
         <span class="material-symbols-outlined text-[20px]">arrow_back</span> Alle Projekte
       </button>
-      <!-- Hero -->
-      <div class="rounded-3xl overflow-hidden soft-elevation mb-xl aspect-video">
-        <img src="images/placeholder.svg" alt="DesignFlow Dashboard" class="w-full h-full object-cover"/>
-      </div>
-      <!-- Header -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-xl">
-        <div class="lg:col-span-2">
-          <div class="flex flex-wrap gap-xs mb-md">
-            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Product Design</span>
-            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">SaaS</span>
-          </div>
-          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">DesignFlow Dashboard</h1>
-          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung: Eine umfassende Redesign-Lösung für Enterprise-Nutzer. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
+      <!-- Header: Text links, Bild + Kachel rechts -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-start mb-xl">
+        <div>
+          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Mein PC</h1>
+          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung für Mein PC. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
         </div>
-        <div class="bg-surface-container-lowest rounded-2xl p-lg soft-elevation border border-surface-container h-fit">
-          <h3 class="font-headline-md text-headline-md text-primary mb-md">Projektdetails</h3>
-          <div class="space-y-sm">
-            <div>
-              <p class="font-caption text-on-surface-variant">Zeitraum</p>
-              <p class="font-body-md text-on-surface font-semibold">2021 – Heute</p>
-            </div>
-            <div class="border-t border-surface-container pt-sm">
-              <p class="font-caption text-on-surface-variant">Rolle</p>
-              <p class="font-body-md text-on-surface font-semibold">Lead Product Designer</p>
-            </div>
-            <div class="border-t border-surface-container pt-sm">
-              <p class="font-caption text-on-surface-variant">Technologien</p>
-              <div class="flex flex-wrap gap-xs mt-xs">
-                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">Figma</span>
-                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">React</span>
-                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">TypeScript</span>
+        <div class="flex flex-col gap-md items-start">
+          <div class="rounded-3xl overflow-hidden soft-elevation aspect-video w-full">
+            <img src="images/placeholder/placeholder.svg" alt="Mein PC" class="w-full h-full object-cover"/>
+          </div>
+          <div class="bg-surface-container-lowest rounded-2xl p-md soft-elevation border border-surface-container self-end">
+            <h3 class="font-headline-md text-headline-md text-primary mb-sm">Projektdetails</h3>
+            <div class="space-y-sm">
+              <div>
+                <p class="font-caption text-on-surface-variant">Zeitraum</p>
+                <p class="font-body-md text-on-surface font-semibold">2024</p>
+              </div>
+              <div class="border-t border-surface-container pt-sm">
+                <p class="font-caption text-on-surface-variant">Kosten</p>
+                <p class="font-body-md text-on-surface font-semibold">~1.000€</p>
               </div>
             </div>
           </div>
@@ -755,17 +814,17 @@ const seiten = {
       <!-- Galerie -->
       <h2 class="font-headline-lg text-headline-lg text-primary mb-lg">Galerie</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-xl">
-        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
-          <img src="images/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
+        <div class="galerie-block rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/mein-pc/RTX 4070 Super.png" alt="RTX 4070 Super" class="w-full h-full object-cover"/>
         </div>
-        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
-          <img src="images/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
+        <div class="galerie-block rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
         </div>
-        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
-          <img src="images/placeholder.svg" alt="Screenshot 3" class="w-full h-full object-cover"/>
+        <div class="galerie-block rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 3" class="w-full h-full object-cover"/>
         </div>
-        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
-          <img src="images/placeholder.svg" alt="Screenshot 4" class="w-full h-full object-cover"/>
+        <div class="galerie-block rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 4" class="w-full h-full object-cover"/>
         </div>
       </div>
       <!-- Navigation zwischen Projekten -->
@@ -784,16 +843,16 @@ const seiten = {
         <span class="material-symbols-outlined text-[20px]">arrow_back</span> Alle Projekte
       </button>
       <div class="rounded-3xl overflow-hidden soft-elevation mb-xl aspect-video">
-        <img src="images/placeholder.svg" alt="Projekt Zwei" class="w-full h-full object-cover"/>
+        <img src="images/placeholder/placeholder.svg" alt="Portfolio" class="w-full h-full object-cover"/>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-xl">
         <div class="lg:col-span-2">
           <div class="flex flex-wrap gap-xs mb-md">
-            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Mobile App</span>
-            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">UX</span>
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Web</span>
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Frontend</span>
           </div>
-          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Projekt Zwei</h1>
-          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung für Projekt Zwei. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
+          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Portfolio</h1>
+          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung für die Portfolio-Website. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
         </div>
         <div class="bg-surface-container-lowest rounded-2xl p-lg soft-elevation border border-surface-container h-fit">
           <h3 class="font-headline-md text-headline-md text-primary mb-md">Projektdetails</h3>
@@ -818,10 +877,10 @@ const seiten = {
       <h2 class="font-headline-lg text-headline-lg text-primary mb-lg">Galerie</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-xl">
         <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
-          <img src="images/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
         </div>
         <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
-          <img src="images/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
         </div>
       </div>
       <div class="flex justify-between items-center border-t border-surface-container pt-lg">
@@ -841,16 +900,16 @@ const seiten = {
         <span class="material-symbols-outlined text-[20px]">arrow_back</span> Alle Projekte
       </button>
       <div class="rounded-3xl overflow-hidden soft-elevation mb-xl aspect-video">
-        <img src="images/placeholder.svg" alt="Projekt Drei" class="w-full h-full object-cover"/>
+        <img src="images/placeholder/placeholder.svg" alt="FHDW-Campus" class="w-full h-full object-cover"/>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-xl">
         <div class="lg:col-span-2">
           <div class="flex flex-wrap gap-xs mb-md">
             <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Web</span>
-            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Frontend</span>
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">App</span>
           </div>
-          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">Projekt Drei</h1>
-          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung für Projekt Drei. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
+          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">FHDW-Campus</h1>
+          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung für FHDW-Campus. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
         </div>
         <div class="bg-surface-container-lowest rounded-2xl p-lg soft-elevation border border-surface-container h-fit">
           <h3 class="font-headline-md text-headline-md text-primary mb-md">Projektdetails</h3>
@@ -875,14 +934,71 @@ const seiten = {
       <h2 class="font-headline-lg text-headline-lg text-primary mb-lg">Galerie</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-xl">
         <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
-          <img src="images/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
         </div>
         <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
-          <img src="images/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
         </div>
       </div>
       <div class="flex justify-between items-center border-t border-surface-container pt-lg">
         <button onclick="seiteWechseln('projects-projekt2')" class="flex items-center gap-xs text-secondary font-label-md hover:gap-sm transition-all">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span> Vorheriges Projekt
+        </button>
+        <button onclick="seiteWechseln('projects-projekt4')" class="flex items-center gap-xs text-secondary font-label-md hover:gap-sm transition-all">
+          Nächstes Projekt <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+        </button>
+      </div>
+    </main>
+  `,
+
+  'projects-projekt4': `
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+      <button onclick="seiteWechseln('projects')" class="flex items-center gap-xs text-secondary font-label-md mb-lg hover:gap-sm transition-all">
+        <span class="material-symbols-outlined text-[20px]">arrow_back</span> Alle Projekte
+      </button>
+      <div class="rounded-3xl overflow-hidden soft-elevation mb-xl aspect-video">
+        <img src="images/placeholder/placeholder.svg" alt="n8n" class="w-full h-full object-cover"/>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-xl">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-xs mb-md">
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">Automation</span>
+            <span class="px-sm py-xs bg-primary/10 text-primary rounded-full font-label-md text-[12px] uppercase tracking-wider">No-Code</span>
+          </div>
+          <h1 class="font-display text-display-mobile md:text-display text-primary mb-md">n8n</h1>
+          <p class="font-body-lg text-on-surface-variant leading-relaxed">Platzhalter-Beschreibung für das n8n-Projekt. Hier kommt die ausführliche Projektbeschreibung rein — Hintergrund, Ziele, Herausforderungen und Ergebnisse.</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-2xl p-lg soft-elevation border border-surface-container h-fit">
+          <h3 class="font-headline-md text-headline-md text-primary mb-md">Projektdetails</h3>
+          <div class="space-y-sm">
+            <div>
+              <p class="font-caption text-on-surface-variant">Zeitraum</p>
+              <p class="font-body-md text-on-surface font-semibold">Platzhalter</p>
+            </div>
+            <div class="border-t border-surface-container pt-sm">
+              <p class="font-caption text-on-surface-variant">Rolle</p>
+              <p class="font-body-md text-on-surface font-semibold">Platzhalter</p>
+            </div>
+            <div class="border-t border-surface-container pt-sm">
+              <p class="font-caption text-on-surface-variant">Technologien</p>
+              <div class="flex flex-wrap gap-xs mt-xs">
+                <span class="px-sm py-xs bg-surface-container text-on-surface rounded-full font-caption">n8n</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="font-headline-lg text-headline-lg text-primary mb-lg">Galerie</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-xl">
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 1" class="w-full h-full object-cover"/>
+        </div>
+        <div class="rounded-2xl overflow-hidden soft-elevation aspect-video">
+          <img src="images/placeholder/placeholder.svg" alt="Screenshot 2" class="w-full h-full object-cover"/>
+        </div>
+      </div>
+      <div class="flex justify-between items-center border-t border-surface-container pt-lg">
+        <button onclick="seiteWechseln('projects-projekt3')" class="flex items-center gap-xs text-secondary font-label-md hover:gap-sm transition-all">
           <span class="material-symbols-outlined text-[20px]">arrow_back</span> Vorheriges Projekt
         </button>
         <div></div>
@@ -975,6 +1091,13 @@ function seiteWechseln(name, anker) {
 
     inhalt.classList.remove('ausblenden');
 
+    // Projekt-Counter automatisch befüllen
+    const counter = document.getElementById('projekt-counter');
+    if (counter) {
+      const anzahl = document.querySelectorAll('.projekt-block').length;
+      counter.textContent = anzahl + ' Projekt' + (anzahl === 1 ? '' : 'e');
+    }
+
     // Nav-Link aktiv markieren (Hauptseite ermitteln)
     const hauptSeite = zuNavigieren.split('-')[0] === 'projects' ? 'projects' : zuNavigieren;
     document.querySelectorAll('.nav-link[data-seite]').forEach(link => {
@@ -1028,6 +1151,13 @@ if (!window.location.hash) window.location.hash = seiteZuLaden;
 
 const inhalt = document.getElementById('seiteninhalt');
 inhalt.innerHTML = seiten[seiteZuLaden];
+
+// Projekt-Counter beim initialen Laden
+const counterStart = document.getElementById('projekt-counter');
+if (counterStart) {
+  const anzahl = document.querySelectorAll('.projekt-block').length;
+  counterStart.textContent = anzahl + ' Projekt' + (anzahl === 1 ? '' : 'e');
+}
 
 const hauptSeiteStart = seiteZuLaden.startsWith('projects-') ? 'projects' : seiteZuLaden;
 const startLink = document.querySelector('[data-seite="' + hauptSeiteStart + '"]:not([data-anker])');
